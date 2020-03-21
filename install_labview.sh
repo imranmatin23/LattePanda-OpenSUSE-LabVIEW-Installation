@@ -23,19 +23,19 @@ printf "Mounting the .iso file...\n"
 sudo mkdir /mnt/iso
 sudo mount -t iso9660 -o loop $download_loc/lv2019full-linux-mac.iso /mnt/iso
 
-printf "Copy the iso directory to the Desktop...\n"
+printf "Copying the iso directory to the Desktop...\n"
 cp -r /mnt/iso ~/Desktop/iso/
 
-printf "Mount the Linux LabVIEW .iso file...\n"
+printf "Mounting the Linux LabVIEW .iso file...\n"
 cd ~/Desktop/iso/LabVIEW/Linux/
 sudo mkdir 2019SP1
 sudo mount -t iso9660 -o loop lv2019full-linux.iso 2019SP1/
 cd 2019SP1/
 
-printf "Install LabVIEW...\n"
-./INSTALL
+printf "Installing LabVIEW...\n"
+sudo ./INSTALL
 
-printf "Unmount and remove all installation packages...\n"
+printf "Unmounting and removing all installation packages...\n"
 sudo umount /home/$USER/Desktop/iso/LabVIEW/Linux/2019SP1
 sudo umount /mnt/iso
 sudo rm -rf /mnt/iso

@@ -72,12 +72,16 @@ xrandr --output DSI-1 --off
 
 A step by step guide that tell you how to install LabVIEW 2019.
 
-1. Download LabVIEW iso and patch.
+1. Install git.
+```
+sudo zypper in git
+```
+2. Download LabVIEW iso and patch.
 ```
 scp LabVIEW2019SP1f1Patch.dmg [USER]@[IP_ADDRESS]:/home/[USER]]/Downloads
 scp lv2019full-linux-mac.iso [USER]@[IP_ADDRESS]:/home/[USER]/Downloads
 ```
-2. Install LabVIEW using installation script.
+3. Install LabVIEW using installation script.
 ```
 sh install_labview.sh
 ```
