@@ -89,9 +89,6 @@ sh install_labview.sh
 
 ![Example]()
 
-TODO:
-End with an example of getting some data out of the system or using it for a little demo
-
 ## Errors
 
 * None

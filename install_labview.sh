@@ -36,6 +36,7 @@ printf "Installing LabVIEW...\n"
 sudo ./INSTALL
 
 printf "Unmounting and removing all installation packages...\n"
+cd ~/Desktop
 sudo umount /home/$USER/Desktop/iso/LabVIEW/Linux/2019SP1
 sudo umount /mnt/iso
 sudo rm -rf /mnt/iso
