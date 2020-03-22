@@ -87,7 +87,7 @@ sh install_labview.sh
 ```
 
 
-![Example]()
+![LabVIEW on OpenSUSE](images/example_labview.png)
 
 ## Errors
 
