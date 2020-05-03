@@ -73,6 +73,7 @@ cat /etc/sysconfig/SuSEfirewall2 | grep sshd
 system ctl status sshd
 systemctl enable sshd
 ```
+16. (OPTIONAL) If you want to set up a Static IP address on OpenSUSE Leap 42.3 follow [this guide](https://docs.google.com/document/d/1hqPk9m53AnPmp_MdRJmawxGa44c2uMKm1Z9Y6t6t1y8/edit?usp=sharing)
 
 ### Installing LabVIEW 2019
 
