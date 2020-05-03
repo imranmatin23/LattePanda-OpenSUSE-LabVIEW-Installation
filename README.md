@@ -16,7 +16,7 @@ These downloads can be either on your local computer and then use SCP to transfe
 
 **OpenSUSE and LabVIEW Option 2:** Follow links below to download OpenSUSE Leap 42.3 DVD and LabVIEW 2019 independently. Note, these links may lead to newer releases of the software and may cause issues during installation.
 
-1. Download OpenSUSE Leap 42.3 DVD from this [link](http://download.opensuse.org/ports/ppc/distribution/leap/42.3/iso/).
+1. Download OpenSUSE Leap 42.3 DVD from this [link](http://cdimage.debian.org/mirror/opensuse.org/distribution/leap/42.3/iso/).
 2. Download LabVIEW 2019. You must have a valid license with National Instruments for the LabVIEW software.
 
 
