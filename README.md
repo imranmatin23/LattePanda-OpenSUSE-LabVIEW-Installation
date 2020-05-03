@@ -2,21 +2,27 @@
 
 This is a guide to installing OpenSUSE Leap 42.3 and LabVIEW 2019 onto your LattePanda.
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ### Prerequisites
 
-What things you need to install the software and how to install them. These downloads can be either on your local computer
-and then use SCP to transfer them onto the remote computer, or can be downloaded straight onto the remote computer.
+These downloads can be either on your local computer and then use SCP to transfer them onto the remote computer, or can be downloaded straight onto the remote computer.
+
+**Download these files from these links.**
+1. Install BalenaEtcher from this [link](https://www.balena.io/etcher/).
+
+**OpenSUSE and LabVIEW Option 1:** Download OpenSUSE Leap 42.3 DVD and LabVIEW 2019 from IMT Lab Dropbox.
+
+1. openSUSE-Leap-42.3-DVD-x86_64.iso
+2. lv2019full-linux-mac.iso
+
+**OpenSUSE and LabVIEW Option 2:** Follow links below to download OpenSUSE Leap 42.3 DVD and LabVIEW 2019 independently. Note, these links may lead to newer releases of the software and may cause issues during installation.
 
 1. Download OpenSUSE Leap 42.3 DVD from this [link](http://download.opensuse.org/ports/ppc/distribution/leap/42.3/iso/).
-2. Download LabVIEW 2019.
-3. Download the patch for LabVIEW 2019.
-4. Install BalenaEtcher from this [link](https://www.balena.io/etcher/).
+2. Download LabVIEW 2019. You must have a valid license with National Instruments for the LabVIEW software.
+
 
 ### Installing OpenSUSE Leap 42.3
+
+**NOTE: All of the following steps must be done on the LattePanda.**
 
 A step by step guide that tell you how to install OpenSUSE Leap 42.3. Make sure ethernet is plugged in.
 
@@ -49,7 +55,17 @@ A step by step guide that tell you how to install OpenSUSE Leap 42.3. Make sure 
         - Enable SSH Service and open SSH port.
         - Select [Install] to continue installation.
 11. Remove installation media after installation is complete.
-12. Enable SSH.
+12. Log into the system.
+13. Disable the internal display output called DSI-1. Open a terminal by either right-clicking on the Desktop and opening one or using the start menu in the bottom left corner. NOTE: You can also fix this in the GUI by pressing opening the start menu and searching for "Displays". Then disable the internal display output called DSI-1.
+```
+xrandr --output DSI-1 --off
+```
+14. Update system.
+```
+sudo zypper refresh
+sudo zypper update
+```
+15. Enable SSH for the LattePanda.
 ```
 which sshd
 sudo zypper in openssh
@@ -57,33 +73,35 @@ cat /etc/sysconfig/SuSEfirewall2 | grep sshd
 system ctl status sshd
 systemctl enable sshd
 ```
-13. Update system.
-```
-sudo zypper refresh
-sudo zypper update
-```
-14. Disable second display output called DSI-1.
-```
-xrandr --output DSI-1 --off
-```
-
 
 ### Installing LabVIEW 2019
 
+**NOTE: These commands were meant to be done through an SSH connection to the LattePanda from a remote computer. They can be done from the Desktop GUI as well with slight modfication. I reccomend doing them on the LattePanda and NOT on a remote connection.**
+
 A step by step guide that tell you how to install LabVIEW 2019.
 
-1. Install git.
+1. Open a terminal on your local computer and SSH into the LattePanda.
+```
+ssh [USER]@[IP_ADDRESS]
+```
+
+2. Install the Linux command.
 ```
 sudo zypper in git
 ```
-2. Download LabVIEW iso and patch.
+
+3. Open a different terminal than your current SSH terminal (leave it open). In the new terminal, copy the LabVIEW iso file from your local computer onto the LattePanda.
 ```
 scp LabVIEW2019SP1f1Patch.dmg [USER]@[IP_ADDRESS]:/home/[USER]]/Downloads
 scp lv2019full-linux-mac.iso [USER]@[IP_ADDRESS]:/home/[USER]/Downloads
 ```
-3. Install LabVIEW using installation script.
+3. Go back to the terminal that has the SSH connection open. Install LabVIEW using installation script located in the this repository.
 ```
 sh install_labview.sh
+```
+4. Check if LabVIEW has been installed. Either open LabVIEW on the LattePanda GUI or check if the command below runs in the terminal.
+```
+./labview
 ```
 
 
