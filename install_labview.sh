@@ -3,7 +3,7 @@
 printf "\nThis script will install LabVIEW 2019...\n"
 
 # Get location of downloaded files
-printf "\nWhere did you download the files from above? Please enter an absolute path such as '/home/imran/Downloads'\n"
+printf "\nWhere did you download the files from above? Please enter an absolute path such as '/home/imt/Downloads'\n"
 read -p ">> " download_loc
 
 # check if path is not empty string
