@@ -1,4 +1,12 @@
 #!/bin/sh
+# 
+# Installation script for LabVIEW 2019.
+#
+# Takes in user input for the location of the installation file, and installs it on the system.
+#
+# Author: Imran Matin
+# Email: imatin@ucsd.edu
+#
 
 printf "\nThis script will install LabVIEW 2019...\n"
 

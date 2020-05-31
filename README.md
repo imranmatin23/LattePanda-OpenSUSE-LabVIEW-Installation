@@ -60,48 +60,49 @@ This is a guide to installing OpenSUSE Leap 42.3 and LabVIEW 2019 onto your Latt
 15. When you see green loading bars, press the UP arrow to get to terminal/YAST2 installer.
 
 16. Follow on-screen installation instructions:
-    - Navigate with (TAB, ENTER, arrow keys).
-    - Select [Next] to accept license and English format.
-    - Set partitioning.
-        - Select [Create Partition Setup...].
-        - Select the internal hard disk (/dev/mmcblk0).
-        - Select [Use Entire Hard Disk].
-        - Select [Next] to accept partitioning.
-    - Select Region: USA and Time Zone: Pacific (Los Angeles) then select [Next].
-    - Select [Next] to accept default User Interface.
-    - Set user credentials then Select [Next].
-        - Enter information.
-        - Leave all other defaults.
-        - Allow short password if desired.
-    - Change installation settings to allow SSH.
-        - Select [Change...].
-        - Select [Firewall and SSH...].
-        - Enable SSH Service and open SSH port.
-        - Select [Install] to continue installation.
+    * Navigate with (TAB, ENTER, arrow keys).
+    * Select [Next] to accept license and English format.
+    * Set partitioning.
+        * Select [Create Partition Setup...].
+        * Select the internal hard disk (/dev/mmcblk0).
+        * Select [Use Entire Hard Disk].
+        * Select [Next] to accept partitioning.
+    * Select Region: USA and Time Zone: Pacific (Los Angeles) then select [Next].
+    * Select [Next] to accept default User Interface.
+    * Set user credentials then Select [Next].
+        * User's Full Name: imt
+        * Username: imt
+        * Password: IMT password
+        * Leave all other defaults.
+        * Select Use this password for system administrator
+        * Select Automatic Login
+    * Change installation settings to allow SSH.
+        * Select [Change...].
+        * Select [Firewall and SSH...].
+        * Enable SSH Service and open SSH port.
+        * Select [Install] to continue installation.
 
 17. Remove installation media after installation is complete.
 
 18. Log into the system.
 
-19. Disable the internal display output called DSI-1. Open a terminal by either right-clicking on the Desktop and opening one or using the start menu in the bottom left corner. NOTE: You can also fix this in the GUI by pressing opening the start menu and searching for "Displays". Then disable the internal display output called DSI-1 by running the following command.
-```
-xrandr --output DSI-1 --off
-```
+19. Disable the internal display output called DSI-1. Press the lizard icon in the bottom left corner to open the start menu and and then search for "Displays". Disable the internal display output called DSI-1. You can also disable it by running the following command in your terminal.
+    ```
+    xrandr --output DSI-1 --off
+    ```
 
-20. Update the system.
-```
-sudo zypper refresh
-sudo zypper update
-```
+20. Update the system. This may take a long time, therefore in can be put off until the end if desired.
+    ```
+    sudo zypper refresh
+    sudo zypper update
+    ```
 
 21. Enable SSH for the LattePanda.
-```
-which sshd
-sudo zypper in openssh
-cat /etc/sysconfig/SuSEfirewall2 | grep sshd
-system ctl status sshd
-systemctl enable sshd
-```
+    ```
+    sudo zypper in openssh
+    systemctl status sshd
+    systemctl enable sshd
+    ```
 
 22. Congrats you have now installed OpenSUSE successfully.
 
@@ -124,16 +125,14 @@ systemctl enable sshd
     git clone <repo>
     ```
 
-3. Install LabVIEW using installation script located in the this repository.
+3. Install LabVIEW using installation script located in the this repository. Enter the path to the download and accept all prompts.
     ```
     cd ~/Desktop/<repo>
     sh install_labview.sh
     ```
 
-4. Check if LabVIEW has been installed. Either open LabVIEW on the LattePanda GUI or check if the command below runs in the terminal. 
-    ```
-    ./labview
-    ```
+4. Check if LabVIEW has been installed by opening the start menu at the bottom left corner and searching for LabVIEW.
+
 
 5. If Step 4 opens LabVIEW correctly, then the installation has succeeded.
 
