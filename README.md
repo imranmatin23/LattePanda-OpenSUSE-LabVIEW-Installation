@@ -144,4 +144,38 @@ systemctl enable sshd
 * Download LabVIEW 2019. You must have a valid license with National Instruments for the LabVIEW software.
     *  Download lv2019full-linux-mac.iso
 * Refer to this [guide](https://cloudyday.tech.blog/2018/08/19/lattepanda/) if you need visual help for installing OpenSUSE.
-* If you want to set up a Static IP address on OpenSUSE Leap 42.3 follow [this guide](https://docs.google.com/document/d/1hqPk9m53AnPmp_MdRJmawxGa44c2uMKm1Z9Y6t6t1y8/edit?usp=sharing)
+* If you want to set up a Static IP address on OpenSUSE Leap 42.3 follow the steps below. You can refer to these [this guide](https://sahlitech.com/configure-static-ip-on-suse-linux/) and [this video](https://www.youtube.com/watch?v=5QneCF9XD4Y) for help as well.
+    * Change the X in all of the IP addresses 192.168.X.Y to the value that is currently there for your IP Address (ip address can be found using `ip address`)
+    * Change the Y in all of the IP addresses 192.168.X.Y to what you would like for this system
+
+    * Step 1
+    ```
+    sudo vim /etc/sysconfig/network/ifcfg-eth0
+    # Change BOOTPROTO to ‘static’
+    # Change IPADDR to ‘192.168.X.Y’
+    # Change NETMASK to ’255.255.255.0’
+    ```
+
+    * Step 2
+    ```
+    sudo vim /etc/sysconfig/network/config
+    # Change NETCONFIG_DNS_STATIC_SERVERS to “8.8.8.8, 8.8.4.4, 192.168.X.1”
+    ```
+
+    * Step 3
+    ```
+    sudo vim /etc/sysconfig/network/routes
+    # Add the line ‘default 192.168.X.1 --’
+    ```
+    
+    * Step 4
+    ```
+    sudo vim /etc/resolv.conf
+    # Add the line ‘nameserver 192.168.X.1’
+    ```
+
+    * Step 5
+    ```
+    systemctl restart wickedd wicked
+    sudo reboot
+    ```
