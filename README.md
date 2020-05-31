@@ -1,41 +1,65 @@
 # OpenSUSE Leap 42.3 and LabVIEW 2019 Installation on LattePanda Steps
 
-This is a guide to installing OpenSUSE Leap 42.3 and LabVIEW 2019 onto your LattePanda.
+This is a guide to installing OpenSUSE Leap 42.3 and LabVIEW 2019 onto your LattePanda. Note that in this guide, local computer refers to the computer that you use regularly and LattePanda will refer to your actual LattePanda.
 
 ### Prerequisites
+* Have 16GB+ of free space on your local computer.
+* Have a USB with 8GB+ space.
+* USB Keyboard and USB Mouse.
+* HDMI Cord.
+* Ethernet cable
+* Ethernet network connection.
+* USB Wall Adapter with up to 2A Output and MicroUSB power cord.
 
-These downloads can be either on your local computer and then use SCP to transfer them onto the remote computer, or can be downloaded straight onto the remote computer.
+## Section 1: Installing OpenSUSE Leap 42.3
 
-**Download these files from these links.**
-1. Install BalenaEtcher from this [link](https://www.balena.io/etcher/).
+### Section 1.1: Perform these steps on your local computer.
+1. Download OpenSUSE Leap 42.3 DVD iso from Microsoft OneDrive.
 
-**OpenSUSE and LabVIEW Option 1:** Download OpenSUSE Leap 42.3 DVD and LabVIEW 2019 from IMT Lab Dropbox.
+2. Install BalenaEtcher for your local computer OS from this [link](https://www.balena.io/etcher/). It will be used to burn the OpenSUSE .iso image onto the USB.
 
-1. openSUSE-Leap-42.3-DVD-x86_64.iso
-2. lv2019full-linux-mac.iso
+3. Insert your USB into your local computer. 
 
-**OpenSUSE and LabVIEW Option 2:** Follow links below to download OpenSUSE Leap 42.3 DVD and LabVIEW 2019 independently. Note, these links may lead to newer releases of the software and may cause issues during installation.
+4. Open BalenaEtcher. Ignore the popup that occurs by pressing ignore if it shows up. Press *Select image* and locate the OpenSUSE .iso that you downloaded in Step 1. Press *Select target* and locate the USB drive that you have inserted (It may be /dev/disk2 or the name of the disk, but confirm the size of the disk matches to make sure). Then select *Flash*.
 
-1. Download OpenSUSE Leap 42.3 DVD from this [link](http://cdimage.debian.org/mirror/opensuse.org/distribution/leap/42.3/iso/).
-2. Download LabVIEW 2019. You must have a valid license with National Instruments for the LabVIEW software.
+    *  NOTE: If the USB does not show up when you select *Select Target*, you must erase and reformat the USB to FAT32 first. Once this is done, repeat Step 4.
 
+    * NOTE: Once BalenaEtcher finishes with USB, an error about the USB may come up saying *"The disk you inserted was not readable by this computer."* Go ahead and ignore it by pressing ignore.
 
-### Installing OpenSUSE Leap 42.3
+5. Remove the USB from your local computer.
 
-**NOTE: All of the following steps must be done on the LattePanda.**
+### Section 1.2: Perform these steps on your LattePanda.
+1. Insert your keyboard into the USB 2.0 port (black) and mouse into the USB 3.0 port (blue).
 
-A step by step guide that tell you how to install OpenSUSE Leap 42.3. Make sure ethernet is plugged in.
+2. Insert the USB with Ubuntu into the USB 2.0 port (black).
 
-1. Burn the .iso file onto the USB using BalenaEtcher.
-2. Insert the USB into the LattePanda.
-3. Upon startup of LattePanda press ESC to get to BIOS.
-4. Select the USB media as the boot option in boot override.
-5. Refer to this [guide](https://cloudyday.tech.blog/2018/08/19/lattepanda/) if you need visual help.
-6. Upon the OpenSUSE start up, press ‘e’ to get to Minimum Emacs-like screen editor.
-7. Change the line `linuxefi /boot/x86_64/loader/linux splash=silent` to `linuxefi /boot/x86_64/loader/linux splash=silent textmode=1`.
-8. Press F10 to begin installation process.
-9. When you see green loading bars, press the UP arrow to get to terminal/YAST2 installer.
-10. Follow on-screen installation instructions:
+3. Plug in your HDMI cord.
+
+4. Plug in your Ethernet cable. 
+
+5. Plug in the microUSB power cord. When plugged in, you should see the red LED indicator light up on the underside of the board. This means that the LattePanda is initializing. Wait patiently for a few seconds until the LED light goes out.
+
+6. When the LED indicator turns off then begin this step. First press the power button once (top white button farther from the corner of the board) to turn on the LattePanda. You should see the LED indicator light up again.
+
+7. Continually tap ESC upon boot up until you enter the BIOS. If you miss the BIOS screen and go into the current OS, shut down the computer by unplugging the power cord and repeat Steps 5 to 7.
+
+8. Navigate to the *Boot* tab in the BIOS screen using your keyboard.
+
+9. Navigate to the *Machine Status AC/Battery In* setting to disable the power buttons and allow for the LattePanda to boot automatically when provided power. Press enter and select the *Power On* option.
+
+10. Navigate to the *Save & Exit* tab and select *Save Changes and Reset*. When the computer begins to restart continually tap ESC upon boot up until you enter the BIOS.
+
+11. Navigate to the *Save & Exit* tab. Navigate to the *Boot Override* section below on the same tab, and select the name of your USB device (Example: UEFI: SanDisk Partition 1) to boot from the USB drive you inserted.
+
+12. Upon the OpenSUSE start up, press `e` to get to Minimum Emacs-like screen editor.
+
+13. Change the line `linuxefi /boot/x86_64/loader/linux splash=silent` to `linuxefi /boot/x86_64/loader/linux splash=silent textmode=1`.
+
+14. Press F10 to begin installation process.
+
+15. When you see green loading bars, press the UP arrow to get to terminal/YAST2 installer.
+
+16. Follow on-screen installation instructions:
     - Navigate with (TAB, ENTER, arrow keys).
     - Select [Next] to accept license and English format.
     - Set partitioning.
@@ -54,18 +78,23 @@ A step by step guide that tell you how to install OpenSUSE Leap 42.3. Make sure 
         - Select [Firewall and SSH...].
         - Enable SSH Service and open SSH port.
         - Select [Install] to continue installation.
-11. Remove installation media after installation is complete.
-12. Log into the system.
-13. Disable the internal display output called DSI-1. Open a terminal by either right-clicking on the Desktop and opening one or using the start menu in the bottom left corner. NOTE: You can also fix this in the GUI by pressing opening the start menu and searching for "Displays". Then disable the internal display output called DSI-1.
+
+17. Remove installation media after installation is complete.
+
+18. Log into the system.
+
+19. Disable the internal display output called DSI-1. Open a terminal by either right-clicking on the Desktop and opening one or using the start menu in the bottom left corner. NOTE: You can also fix this in the GUI by pressing opening the start menu and searching for "Displays". Then disable the internal display output called DSI-1 by running the following command.
 ```
 xrandr --output DSI-1 --off
 ```
-14. Update system.
+
+20. Update the system.
 ```
 sudo zypper refresh
 sudo zypper update
 ```
-15. Enable SSH for the LattePanda.
+
+21. Enable SSH for the LattePanda.
 ```
 which sshd
 sudo zypper in openssh
@@ -73,71 +102,46 @@ cat /etc/sysconfig/SuSEfirewall2 | grep sshd
 system ctl status sshd
 systemctl enable sshd
 ```
-16. (OPTIONAL) If you want to set up a Static IP address on OpenSUSE Leap 42.3 follow [this guide](https://docs.google.com/document/d/1hqPk9m53AnPmp_MdRJmawxGa44c2uMKm1Z9Y6t6t1y8/edit?usp=sharing)
 
-### Installing LabVIEW 2019
-
-**NOTE: These commands were meant to be done through an SSH connection to the LattePanda from a remote computer. They can be done from the Desktop GUI as well with slight modfication. I reccomend doing them on the LattePanda and NOT on a remote connection.**
-
-A step by step guide that tell you how to install LabVIEW 2019.
-
-1. Open a terminal on your local computer and SSH into the LattePanda.
-```
-ssh [USER]@[IP_ADDRESS]
-```
-
-2. Install the Linux command.
-```
-sudo zypper in git
-```
-
-3. Open a different terminal than your current SSH terminal (leave it open). In the new terminal, copy the LabVIEW iso file from your local computer onto the LattePanda.
-```
-scp LabVIEW2019SP1f1Patch.dmg [USER]@[IP_ADDRESS]:/home/[USER]]/Downloads
-scp lv2019full-linux-mac.iso [USER]@[IP_ADDRESS]:/home/[USER]/Downloads
-```
-3. Go back to the terminal that has the SSH connection open. Install LabVIEW using installation script located in the this repository.
-```
-sh install_labview.sh
-```
-4. Check if LabVIEW has been installed. Either open LabVIEW on the LattePanda GUI or check if the command below runs in the terminal.
-```
-./labview
-```
+22. Congrats you have now installed OpenSUSE successfully.
 
 
-![LabVIEW on OpenSUSE](images/example_labview.png)
 
-## Errors
 
-* None
+## Section 2: Installing LabVIEW 2019
 
-### System Notes
+### Section 2.1: Perform these steps on your LattePanda.
+1. Download LabVIEW 2019 into your `~/Downloads` folder from Microsoft OneDrive. You must have a valid license with National Instruments for the LabVIEW software.
 
-* None
+2. Execute the command below to install the Linux command git.
+    ```
+    sudo zypper in git
+    ```
 
-## Built With
+3. Clone this repository.
+    ```
+    cd ~/Desktop
+    git clone <repo>
+    ```
 
-* OpenSUSE Leap 42.3 - The OS used
-* LabVIEW - LabVIEW application software
+3. Install LabVIEW using installation script located in the this repository.
+    ```
+    cd ~/Desktop/<repo>
+    sh install_labview.sh
+    ```
 
-## Contributing
+4. Check if LabVIEW has been installed. Either open LabVIEW on the LattePanda GUI or check if the command below runs in the terminal. 
+    ```
+    ./labview
+    ```
 
-* None
+5. If Step 4 opens LabVIEW correctly, then the installation has succeeded.
 
-## Versioning
 
-* None
-
-## Authors
-
-* **Imran Matin** - [Github Profile](https://github.com/imranmatin23)
-
-## License
-
-* None
-
-## Acknowledgments
-
-* None
-
+## Extra Notes
+* Follow the links below to download OpenSUSE Leap 42.3 DVD installation files independently. Note, these links may lead to newer releases of the software and may cause issues during installation.
+    * Download OpenSUSE Leap 42.3 DVD from this [link](http://cdimage.debian.org/mirror/opensuse.org/distribution/leap/42.3/iso/).
+* Download LabVIEW 2019. You must have a valid license with National Instruments for the LabVIEW software.
+    *  Download lv2019full-linux-mac.iso
+* Refer to this [guide](https://cloudyday.tech.blog/2018/08/19/lattepanda/) if you need visual help for installing OpenSUSE.
+* If you want to set up a Static IP address on OpenSUSE Leap 42.3 follow [this guide](https://docs.google.com/document/d/1hqPk9m53AnPmp_MdRJmawxGa44c2uMKm1Z9Y6t6t1y8/edit?usp=sharing)
